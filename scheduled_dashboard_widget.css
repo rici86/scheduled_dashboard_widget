@@ -1,0 +1,25 @@
+
+.scheduled-dashboard-filtering {
+	display:flex; 
+	justify-content: space-between;
+	margin-bottom: 0.5rem;
+}
+.scheduled-dashboard-check-container {
+	display:flex; 
+	column-gap:0.5rem;
+	row-gap: 0.25rem;
+	flex-wrap: wrap;
+}
+.scheduled-dashboard-check-container label {
+	display:flex; 
+	align-items:center;
+}
+.scheduled-dashboard-footer {
+	margin-top: 0;
+	margin-bottom: 0;
+	padding: 12px 0;
+	border-top: 1px solid #f0f0f1;
+	font-size: 0.75rem;
+	color: #50575e;
+	text-align: right;
+}
