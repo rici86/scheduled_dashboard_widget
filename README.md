@@ -2,6 +2,6 @@
 <br>
 <br>A simple wordpress widget that adds a custom widget to Wordpress dashboard. It displays scheduled posts and custom post types.
 <br>
-<br><img src="https://www.lrcrafts.it/wp-content/plugins/scheduled_dashboard_widget/screenshot.png" style="max-width:100%; height:auto;">
 <br><i>Screenshot</i>
-<br>
+<br>![screenshot](https://github.com/rici86/scheduled_dashboard_widget/assets/98947479/0107cc7a-153b-4099-b1cb-0af40788b9bf)
+
