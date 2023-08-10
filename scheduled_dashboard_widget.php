@@ -14,6 +14,12 @@ function scheduled_dashboard_widget() {
 add_action('wp_dashboard_setup', 'scheduled_dashboard_widget');
 
 function scheduled_dashboard_widget_content() {
+    // Check if the filter form has been submitted
+    if (isset($_POST['post_type_filter'])) {
+        $selected_post_types = $_POST['post_type_filter'];
+        update_user_meta(get_current_user_id(), 'custom_dashboard_post_type_filter', $selected_post_types);
+    }
+
     // Get the selected post types from the user meta
     $selected_post_types = get_user_meta(get_current_user_id(), 'custom_dashboard_post_type_filter', true);
 
@@ -42,8 +48,9 @@ function scheduled_dashboard_widget_content() {
     <?php
 
     $selected_post_types = ($selected_post_types !== 'all') ? $selected_post_types : wp_list_pluck($registered_post_types, 'name');
+    // Use the selected post types as default filter
     $args = array(
-        'post_type'      => 'any', // Use 'any' as a placeholder for 'post_type', we'll use 'post_type__in' below
+        'post_type'      => ($selected_post_types !== 'all') ? $selected_post_types : wp_list_pluck($registered_post_types, 'name'),
         'post_status'    => 'future',
         'orderby'        => 'date',
         'order'          => 'ASC',
@@ -61,7 +68,7 @@ function scheduled_dashboard_widget_content() {
             $scheduled_posts->the_post();
             echo '<tr>';
             echo '<td style="white-space: nowrap;">' . get_the_date('d/m, H:i') . '</td>';
-            echo '<td><a href="' . get_edit_post_link() . '">' . get_the_title() . '</a>';    
+            echo '<td><a href="' . get_edit_post_link() . '">' . get_the_title() . '</a>';
             // Get post categories
             $post_categories = get_the_category();
             if (!empty($post_categories)) {
@@ -69,10 +76,10 @@ function scheduled_dashboard_widget_content() {
                 $category_names = wp_list_pluck($post_categories, 'name');
                 echo implode(', ', $category_names);
                 echo ')</span>';
-            }            
+            }
             echo '</td>';
             echo '<td>' . esc_html($registered_post_types[get_post_type()]->label) . '</td>';
-            echo '<td><a href="' . esc_url(get_preview_post_link(get_the_ID())) . '" target="_blank" class="button">Preview</a></td>';           
+            echo '<td><a href="' . esc_url(get_preview_post_link(get_the_ID())) . '" target="_blank" class="button">Preview</a></td>';
             echo '</tr>';
         }
         echo '</tbody>';
@@ -95,14 +102,6 @@ function enqueue_custom_dashboard_widget_css() {
 }
 add_action('admin_enqueue_scripts', 'enqueue_custom_dashboard_widget_css');
 
-
-// Update user meta with selected post types filter
-function update_post_type_filter() {
-    if (isset($_POST['post_type_filter'])) {
-        update_user_meta(get_current_user_id(), 'custom_dashboard_post_type_filter', $_POST['post_type_filter']);
-    }
-}
-	
 add_action('wp_dashboard_setup', 'scheduled_dashboard_widget');
-add_action('admin_init', 'update_post_type_filter');
+
 ?>
