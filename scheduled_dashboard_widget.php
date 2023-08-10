@@ -55,14 +55,23 @@ function scheduled_dashboard_widget_content() {
 
     if ($scheduled_posts->have_posts()) {
         echo '<table class="widefat striped" style="border: none;">';
-        echo '<thead><tr><th style="white-space:nowrap;">Date & Time</th><th>Title</th><th>Post Type</th></tr></thead>';
+        echo '<thead><tr><th style="white-space:nowrap;">When</th><th>Title</th><th style="white-space:nowrap;">Post Type</th><th></th></tr></thead>';
         echo '<tbody>';
         while ($scheduled_posts->have_posts()) {
             $scheduled_posts->the_post();
             echo '<tr>';
             echo '<td>' . get_the_date('d/m, H:i') . '</td>';
-            echo '<td>' . get_the_title() . '</td>';
+            echo '<td><a href="' . get_edit_post_link() . '">' . get_the_title() . '</a>';
+            $post_categories = get_the_category();
+            if (!empty($post_categories)) {
+                echo '<br><span class="post-categories">(';
+                $category_names = wp_list_pluck($post_categories, 'name');
+                echo implode(', ', $category_names);
+                echo ')</span>';
+            }
+            echo '</td>';
             echo '<td>' . esc_html($registered_post_types[get_post_type()]->label) . '</td>';
+            echo '<td><a href="' . esc_url(get_preview_post_link(get_the_ID())) . '" target="_blank" class="button">Preview</a></td>';           
             echo '</tr>';
         }
         echo '</tbody>';
