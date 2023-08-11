@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 09:12+0000\n"
-"PO-Revision-Date: 2023-08-11 11:03+0000\n"
+"PO-Revision-Date: 2023-08-11 12:14+0000\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Language: it-IT\n"
@@ -41,8 +41,8 @@ msgstr "Tipologia"
 msgid "Preview"
 msgstr "Anteprima"
 
-#: ../scheduled_dashboard_widget.php:3
-msgid "Scheduled Posts and Custom Posts Dashboard Widget"
+#: ../scheduled_dashboard_widget.php:20
+msgid "Scheduled Posts and Custom Posts"
 msgstr "Programmazione degli Articoli e Tipi di Articoli Personalizzati"
 
 #: ../scheduled_dashboard_widget.php:69

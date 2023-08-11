@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 09:12+0000\n"
-"PO-Revision-Date: 2023-08-11 11:06+0000\n"
+"PO-Revision-Date: 2023-08-11 12:13+0000\n"
 "Last-Translator: Rici86\n"
 "Language-Team: German\n"
 "Language: de-DE\n"
@@ -42,8 +42,8 @@ msgstr "Beitragstyp"
 msgid "Preview"
 msgstr "Vorschau"
 
-#: ../scheduled_dashboard_widget.php:3
-msgid "Scheduled Posts and Custom Posts Dashboard Widget"
+#: ../scheduled_dashboard_widget.php:20
+msgid "Scheduled Posts and Custom Posts"
 msgstr "Planung von Beiträgen und benutzerdefinierten Beitragstypen "
 
 #: ../scheduled_dashboard_widget.php:69

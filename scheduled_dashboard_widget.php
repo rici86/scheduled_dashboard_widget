@@ -3,7 +3,7 @@
  * Plugin Name: Scheduled Posts and Custom Posts Dashboard Widget
  * Version: 1.0.0
  * Description: Adds a custom dashboard widget to display scheduled posts and custom post types.
- * Author: Rici86
+ * Author: <a href="https://www.rici86.com">Rici86</a>
  * Text Domain: scheduled-dashboard-widget
  * Domain Path: /languages
 */
@@ -15,15 +15,9 @@ function scheduled_dashboard_widget_load_textdomain() {
 add_action('plugins_loaded', 'scheduled_dashboard_widget_load_textdomain');
 
 function scheduled_dashboard_widget() {
-    $widget_title = __('Scheduled Posts and Custom Posts', 'scheduled-dashboard-widget');
-    if (function_exists('pll__')) {
-        // If Polylang plugin is active, use custom translation for widget title
-        $widget_title = pll__('Scheduled Posts and Custom Posts', 'scheduled-dashboard-widget');
-    }
-
     wp_add_dashboard_widget(
         'scheduled_dashboard_widget',        // Widget ID
-        $widget_title, // Widget Title
+        __('Scheduled Posts and Custom Posts', 'scheduled-dashboard-widget'), // Translatable Widget Title
         'scheduled_dashboard_widget_content' // Widget Content Callback
     );
 }
