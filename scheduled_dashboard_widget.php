@@ -91,7 +91,7 @@ function scheduled_dashboard_widget_content() {
 
     // Display the footer 
     echo '<div class="scheduled-dashboard-footer">';
-    echo '<span>Powered by <a href="https://www.rici86.com" target="_blank">Rici86.com</a></span>';
+    echo '<span>Widget by Rici86</span>';
     echo '</div>';
 	
 }
