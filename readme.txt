@@ -19,7 +19,7 @@ You can filter only the post types you want to see. The widget can remember your
 Author: Rici86 (rici86.com)
 Github repository: https://github.com/rici86/scheduled_dashboard_widget
 
-Translated in other language with the help of ChatGPT
+Translated in other languages with the help of ChatGPT
 
 == Installation ==
 

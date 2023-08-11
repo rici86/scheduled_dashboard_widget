@@ -1,12 +1,18 @@
+#: ../scheduled_dashboard_widget.php:3
+msgid "Scheduled Posts and Custom Posts Dashboard Widget"
+msgstr ""
+#: ../scheduled_dashboard_widget.php:5
+msgid "Adds a custom dashboard widget to display scheduled posts and custom post types."
+msgstr ""
 #: ../scheduled_dashboard_widget.php:38
 msgid "Filter Post Types:"
-msgstr "Filtra tipologie:"
+msgstr ""
 #: ../scheduled_dashboard_widget.php:39
 msgid "Filter"
-msgstr "Filtra"
+msgstr ""
 #: ../scheduled_dashboard_widget.php:69
 msgid "When"
-msgstr "Quando"
+msgstr ""
 #: ../scheduled_dashboard_widget.php:69
 msgid "Title"
 msgstr ""

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 09:12+0000\n"
-"PO-Revision-Date: 2023-08-11 09:22+0000\n"
+"PO-Revision-Date: 2023-08-11 11:06+0000\n"
 "Last-Translator: Rici86\n"
 "Language-Team: German\n"
 "Language: de-DE\n"
@@ -14,8 +14,13 @@ msgstr ""
 "X-Generator: Loco https://localise.biz/\n"
 "X-Loco-Version: 2.6.4; wp-6.3"
 
-msgid "Scheduled Posts and Custom Posts Dashboard Widget"
-msgstr "Planung von Beiträgen und benutzerdefinierten Beitragstypen "
+#: ../scheduled_dashboard_widget.php:5
+msgid ""
+"Adds a custom dashboard widget to display scheduled posts and custom post "
+"types."
+msgstr ""
+"Fügt ein Widget zum Dashboard hinzu, um die Planung von Beiträgen und "
+"benutzerdefinierten Beitragstypen anzuzeigen."
 
 #: ../scheduled_dashboard_widget.php:39
 msgid "Filter"
@@ -36,6 +41,10 @@ msgstr "Beitragstyp"
 #: ../scheduled_dashboard_widget.php:86
 msgid "Preview"
 msgstr "Vorschau"
+
+#: ../scheduled_dashboard_widget.php:3
+msgid "Scheduled Posts and Custom Posts Dashboard Widget"
+msgstr "Planung von Beiträgen und benutzerdefinierten Beitragstypen "
 
 #: ../scheduled_dashboard_widget.php:69
 msgid "Title"

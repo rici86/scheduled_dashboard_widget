@@ -8,6 +8,12 @@
  * Domain Path: /languages
 */
 
+// Load the plugin's text domain for translations
+function scheduled_dashboard_widget_load_textdomain() {
+    load_plugin_textdomain('scheduled-dashboard-widget', false, dirname(plugin_basename(__FILE__)) . '/languages');
+}
+add_action('plugins_loaded', 'scheduled_dashboard_widget_load_textdomain');
+
 function scheduled_dashboard_widget() {
     $widget_title = __('Scheduled Posts and Custom Posts', 'scheduled-dashboard-widget');
     if (function_exists('pll__')) {
@@ -40,19 +46,19 @@ function scheduled_dashboard_widget_content() {
     ?>
     <div style="margin-bottom: 1rem;">
         <form method="post">
-		<div class="scheduled-dashboard-filtering">
-            <label>Filter Post Types:</label>		
-            <input type="submit" value="Filter">
-		</div>
-			<div class="scheduled-dashboard-check-container">
-            <?php foreach ($registered_post_types as $post_type) : ?>
-                <label>
-                    <input type="checkbox" name="post_type_filter[]" value="<?php echo esc_attr($post_type->name); ?>" <?php checked(in_array($post_type->name, $selected_post_types), true); ?>>
-                    <?php echo esc_html($post_type->label); ?>
-                </label>
-                <br>
-            <?php endforeach; ?>
-			</div>
+            <div class="scheduled-dashboard-filtering">
+                <label><?php _e('Filter Post Types:', 'scheduled-dashboard-widget'); ?></label>
+                <input type="submit" value="<?php _e('Filter', 'scheduled-dashboard-widget'); ?>">
+            </div>
+            <div class="scheduled-dashboard-check-container">
+                <?php foreach ($registered_post_types as $post_type) : ?>
+                    <label>
+                        <input type="checkbox" name="post_type_filter[]" value="<?php echo esc_attr($post_type->name); ?>" <?php checked(in_array($post_type->name, $selected_post_types), true); ?>>
+                        <?php echo esc_html($post_type->label); ?>
+                    </label>
+                    <br>
+                <?php endforeach; ?>
+            </div>
         </form>
     </div>
     <?php
@@ -72,7 +78,7 @@ function scheduled_dashboard_widget_content() {
 
     if ($scheduled_posts->have_posts()) {
         echo '<table class="widefat striped" style="border: none;">';
-        echo '<thead><tr><th style="white-space:nowrap;">When</th><th>Title</th><th style="white-space:nowrap;">Post Type</th><th></th></tr></thead>';
+        echo '<thead><tr><th style="white-space:nowrap;">' . __('When', 'scheduled-dashboard-widget') . '</th><th>' . __('Title', 'scheduled-dashboard-widget') . '</th><th style="white-space:nowrap;">' . __('Post Type', 'scheduled-dashboard-widget') . '</th><th></th></tr></thead>';
         echo '<tbody>';
         while ($scheduled_posts->have_posts()) {
             $scheduled_posts->the_post();
@@ -89,19 +95,19 @@ function scheduled_dashboard_widget_content() {
             }
             echo '</td>';
             echo '<td>' . esc_html($registered_post_types[get_post_type()]->label) . '</td>';
-            echo '<td><a href="' . esc_url(get_preview_post_link(get_the_ID())) . '" target="_blank" class="button">Preview</a></td>';
+            echo '<td><a href="' . esc_url(get_preview_post_link(get_the_ID())) . '" target="_blank" class="button">' . __('Preview', 'scheduled-dashboard-widget') . '</a></td>';
             echo '</tr>';
         }
         echo '</tbody>';
         echo '</table>';
         wp_reset_postdata();
     } else {
-        echo 'No scheduled posts found.';
+        echo __('No scheduled posts found.', 'scheduled-dashboard-widget');
     }
 
     // Display the footer 
     echo '<div class="scheduled-dashboard-footer">';
-    echo '<span>Widget by Rici86</span>';
+    echo '<span>' . __('Widget by Rici86', 'scheduled-dashboard-widget') . '</span>';
     echo '</div>';
 	
 }
@@ -113,5 +119,3 @@ function enqueue_custom_dashboard_widget_css() {
 add_action('admin_enqueue_scripts', 'enqueue_custom_dashboard_widget_css');
 
 add_action('wp_dashboard_setup', 'scheduled_dashboard_widget');
-
-?>

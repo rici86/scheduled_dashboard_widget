@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 09:13+0000\n"
-"PO-Revision-Date: 2023-08-11 09:13+0000\n"
+"PO-Revision-Date: 2023-08-11 11:05+0000\n"
 "Last-Translator: \n"
 "Language-Team: French (France)\n"
 "Language: fr-FR\n"
@@ -13,8 +13,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/"
 
-msgid "Scheduled Posts and Custom Posts Dashboard Widget"
-msgstr "Programmation des Articles et Types d'Articles Personnalisés "
+#: ../scheduled_dashboard_widget.php:5
+msgid ""
+"Adds a custom dashboard widget to display scheduled posts and custom post "
+"types."
+msgstr ""
+"Ajoute un widget au tableau de bord pour afficher la planification des "
+"articles et des types d'articles personnalisés."
 
 #: ../scheduled_dashboard_widget.php:39
 msgid "Filter"
@@ -35,6 +40,10 @@ msgstr "Type de contenu"
 #: ../scheduled_dashboard_widget.php:86
 msgid "Preview"
 msgstr "Aperçu"
+
+#: ../scheduled_dashboard_widget.php:3
+msgid "Scheduled Posts and Custom Posts Dashboard Widget"
+msgstr "Programmation des Articles et Types d'Articles Personnalisés "
 
 #: ../scheduled_dashboard_widget.php:69
 msgid "Title"
