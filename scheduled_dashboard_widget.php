@@ -1,7 +1,11 @@
 <?php
 /*
-Plugin Name: Scheduled Posts and Custom Posts Dashboard Widget
-Description: Adds a custom dashboard widget to display scheduled posts and custom post types.
+ * Plugin Name: Scheduled Posts and Custom Posts Dashboard Widget
+ * Version: 1.0.0
+ * Description: Adds a custom dashboard widget to display scheduled posts and custom post types.
+ * Author: Rici86
+ * Text Domain: scheduled-dashboard-widget
+ * Domain Path: /languages
 */
 
 function scheduled_dashboard_widget() {
