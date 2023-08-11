@@ -9,9 +9,15 @@
 */
 
 function scheduled_dashboard_widget() {
+    $widget_title = __('Scheduled Posts and Custom Posts', 'scheduled-dashboard-widget');
+    if (function_exists('pll__')) {
+        // If Polylang plugin is active, use custom translation for widget title
+        $widget_title = pll__('Scheduled Posts and Custom Posts', 'scheduled-dashboard-widget');
+    }
+
     wp_add_dashboard_widget(
         'scheduled_dashboard_widget',        // Widget ID
-        'Scheduled Posts and Custom Posts', // Widget Title
+        $widget_title, // Widget Title
         'scheduled_dashboard_widget_content' // Widget Content Callback
     );
 }

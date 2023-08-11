@@ -1,45 +1,46 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-11 09:12+0000\n"
-"PO-Revision-Date: 2023-08-11 09:12+0000\n"
-"Last-Translator: \n"
-"Language-Team: Italian\n"
-"Language: it-IT\n"
+"PO-Revision-Date: 2023-08-11 09:22+0000\n"
+"Last-Translator: Rici86\n"
+"Language-Team: German\n"
+"Language: de-DE\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Loco https://localise.biz/"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.4; wp-6.3"
 
 msgid "Scheduled Posts and Custom Posts Dashboard Widget"
-msgstr "Programmazione degli Articoli e Tipi di Articoli Personalizzati"
+msgstr "Planung von Beiträgen und benutzerdefinierten Beitragstypen "
 
 #: ../scheduled_dashboard_widget.php:39
 msgid "Filter"
-msgstr "Filtra"
+msgstr "Filtern"
 
 #: ../scheduled_dashboard_widget.php:38
 msgid "Filter Post Types:"
-msgstr "Filtra tipologie:"
+msgstr "Beitragstypen filtern:"
 
 #: ../scheduled_dashboard_widget.php:93
 msgid "No scheduled posts found."
-msgstr "Nessun post programmato."
+msgstr "Keine geplanten Beiträge gefunden."
 
 #: ../scheduled_dashboard_widget.php:69
 msgid "Post Type"
-msgstr "Tipologia"
+msgstr "Beitragstyp"
 
 #: ../scheduled_dashboard_widget.php:86
 msgid "Preview"
-msgstr "Anteprima"
+msgstr "Vorschau"
 
 #: ../scheduled_dashboard_widget.php:69
 msgid "Title"
-msgstr "Titolo"
+msgstr "Titel"
 
 #: ../scheduled_dashboard_widget.php:69
 msgid "When"
-msgstr "Quando"
+msgstr "Wann"
