@@ -1,0 +1,21 @@
+#: ../scheduled_dashboard_widget.php:38
+msgid "Filter Post Types:"
+msgstr "Filtra tipologie:"
+#: ../scheduled_dashboard_widget.php:39
+msgid "Filter"
+msgstr "Filtra"
+#: ../scheduled_dashboard_widget.php:69
+msgid "When"
+msgstr "Quando"
+#: ../scheduled_dashboard_widget.php:69
+msgid "Title"
+msgstr ""
+#: ../scheduled_dashboard_widget.php:69
+msgid "Post Type"
+msgstr ""
+#: ../scheduled_dashboard_widget.php:86
+msgid "Preview"
+msgstr ""
+#: ../scheduled_dashboard_widget.php:93
+msgid "No scheduled posts found."
+msgstr ""
