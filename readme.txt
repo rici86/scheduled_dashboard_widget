@@ -19,6 +19,8 @@ You can filter only the post types you want to see. The widget can remember your
 Author: Rici86 (rici86.com)
 Github repository: https://github.com/rici86/scheduled_dashboard_widget
 
+Translated in other language with the help of ChatGPT
+
 == Installation ==
 
 1. Upload the `scheduled-posts-dashboard-widget` folder to the `/wp-content/plugins/` directory.
