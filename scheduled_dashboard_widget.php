@@ -77,7 +77,7 @@ function scheduled_dashboard_widget_content() {
         while ($scheduled_posts->have_posts()) {
             $scheduled_posts->the_post();
             echo '<tr>';
-            echo '<td style="white-space: nowrap;">' . get_the_date('d/m, H:i') . '</td>';
+            echo '<td style="white-space: nowrap;">' . get_the_date('D d/m, H:i') . '</td>';
             echo '<td><a href="' . get_edit_post_link() . '">' . get_the_title() . '</a>';
             // Get post categories
             $post_categories = get_the_category();
