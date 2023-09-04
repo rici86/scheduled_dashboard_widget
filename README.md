@@ -10,4 +10,4 @@
 <br><img src="https://www.lrcrafts.it/wp-content/plugins/scheduled_dashboard_widget/screenshot.png" style="max-width:100%; height:auto;">
 <br>
 <br>Author: Rici86 
-<br>Translated in other language with the help of ChatGPT
+<br>Translated in other languages with the help of ChatGPT
