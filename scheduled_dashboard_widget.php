@@ -189,20 +189,35 @@ function render_scheduled_posts_page_content() {
 
     if ($scheduled_posts->have_posts()) {
         echo '<table class="wp-list-table widefat fixed striped table-view-list">';
-        echo '<thead><tr><th style="white-space:nowrap;">' . __('When', 'scheduler') . '</th><th>' . __('Title', 'scheduler') . '</th><th style="white-space:nowrap;">' . __('Post Type', 'scheduler') . '</th><th></th></tr></thead>';
+        echo '<thead>
+                <tr>
+                <th style="white-space:nowrap;">' . __('When', 'scheduler') . '</th>
+                <th>' . __('Title', 'scheduler') . '</th>
+                <th>' . __('Categories', 'scheduler') . '</th>
+                <th>' . __('Tags', 'scheduler') . '</th>
+                <th style="white-space:nowrap;">' . __('Post Type', 'scheduler') . '</th>
+                <th></th></tr>
+            </thead>';
         echo '<tbody>';
         while ($scheduled_posts->have_posts()) {
             $scheduled_posts->the_post();
             echo '<tr>';
             echo '<td style="white-space: nowrap;">' . get_the_date('l d M Y, H:i') . '</td>';
-            echo '<td><a href="' . get_edit_post_link() . '">' . get_the_title() . '</a>';
+            echo '<td><a href="' . get_edit_post_link() . '"><strong>' . get_the_title() . '</strong></a></td>';
+            echo '<td>';
             // Get post categories
             $post_categories = get_the_category();
             if (!empty($post_categories)) {
-                echo '<br><span class="post-categories scheduled-cat">(';
                 $category_names = wp_list_pluck($post_categories, 'name');
                 echo implode(', ', $category_names);
-                echo ')</span>';
+            }
+            echo '</td>';
+            echo '<td>';
+            // Get post tags
+            $post_tags = get_the_tags();
+            if (!empty($post_tags)) {
+                $tag_names = wp_list_pluck($post_tags, 'name');
+                echo implode(', ', $tag_names);
             }
             echo '</td>';
             echo '<td>' . esc_html($registered_post_types[get_post_type()]->label) . '</td>';
