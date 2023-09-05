@@ -153,27 +153,6 @@ function render_scheduled_posts_page_content() {
     // Get all registered post types
     $registered_post_types = get_post_types(array('public' => true), 'objects');
 
-    // Output filter form
-    ?>
-    <div style="margin-bottom: 1rem;">
-        <form method="post">
-            <div class="scheduled-dashboard-filtering">
-                <label><?php _e('Filter Post Types:', 'scheduler'); ?></label>
-                <input type="submit" value="<?php _e('Filter', 'scheduler'); ?>">
-            </div>
-            <div class="scheduled-dashboard-check-container">
-                <?php foreach ($registered_post_types as $post_type) : ?>
-                    <label>
-                        <input type="checkbox" name="post_type_filter[]" value="<?php echo esc_attr($post_type->name); ?>" <?php checked(in_array($post_type->name, $selected_post_types), true); ?> >
-                        <?php echo esc_html($post_type->label); ?>
-                    </label>
-                    <br>
-                <?php endforeach; ?>
-            </div>
-        </form>
-    </div>
-    <?php
-
     $selected_post_types = ($selected_post_types !== 'all') ? $selected_post_types : wp_list_pluck($registered_post_types, 'name');
     // Use the selected post types as default filter
     $args = array(
@@ -186,8 +165,35 @@ function render_scheduled_posts_page_content() {
     );
 
     $scheduled_posts = new WP_Query($args);
+    $total_results = $scheduled_posts->found_posts;
 
     if ($scheduled_posts->have_posts()) {
+
+        // Output filter form
+        ?>
+        <div style="margin-bottom: 1rem;">
+            <div style="display:flex; gap:1rem; justify-content:space-between;">
+                <form method="post">
+                    <div class="scheduled-dashboard-filtering">
+                        <label><?php _e('Filter Post Types:', 'scheduler'); ?></label>
+                        <input type="submit" value="<?php _e('Filter', 'scheduler'); ?>">
+                    </div>
+                    <div class="scheduled-dashboard-check-container">
+                        <?php foreach ($registered_post_types as $post_type) : ?>
+                            <label>
+                                <input type="checkbox" name="post_type_filter[]" value="<?php echo esc_attr($post_type->name); ?>" <?php checked(in_array($post_type->name, $selected_post_types), true); ?> >
+                                <?php echo esc_html($post_type->label); ?>
+                            </label>
+                            <br>
+                        <?php endforeach; ?>
+                    </div>
+                </form>
+                <div class="tablenav">
+                    <div class="tablenav-pages"><span class="displaying-num">Total Results: <?php echo $total_results; ?> </span></div>
+                </div>
+            </div>
+        <?php
+        
         echo '<table class="wp-list-table widefat fixed striped table-view-list">';
         echo '<thead>
                 <tr>
@@ -195,6 +201,7 @@ function render_scheduled_posts_page_content() {
                 <th>' . __('Title', 'scheduler') . '</th>
                 <th>' . __('Categories', 'scheduler') . '</th>
                 <th>' . __('Tags', 'scheduler') . '</th>
+                <th>' . __('Author', 'scheduler') . '</th>
                 <th style="white-space:nowrap;">' . __('Post Type', 'scheduler') . '</th>
                 <th></th></tr>
             </thead>';
@@ -220,6 +227,7 @@ function render_scheduled_posts_page_content() {
                 echo implode(', ', $tag_names);
             }
             echo '</td>';
+            echo '<td>' . get_the_author() . '</td>';
             echo '<td>' . esc_html($registered_post_types[get_post_type()]->label) . '</td>';
             echo '<td><a href="' . esc_url(get_preview_post_link(get_the_ID())) . '" target="_blank" class="button">' . __('Preview', 'scheduler') . '</a></td>';
             echo '</tr>';
