@@ -113,7 +113,7 @@ function enqueue_custom_dashboard_widget_scripts() {
     wp_enqueue_script('schedule-change', plugin_dir_url(__FILE__) . 'schedule-change.js', array('wp-date-picker'), '1.0.0', true);
 
     // Pass data to the JavaScript file using wp_localize_script
-    wp_localize_script('schedul-change', 'customDashboardWidgetData', array(
+    wp_localize_script('schedule-change', 'customDashboardWidgetData', array(
         'ajax_url' => admin_url('admin-ajax.php'),
     ));
 }
