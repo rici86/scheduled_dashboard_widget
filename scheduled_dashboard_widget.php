@@ -14,6 +14,14 @@ function scheduled_dashboard_widget_load_textdomain() {
 }
 add_action('plugins_loaded', 'scheduled_dashboard_widget_load_textdomain');
 
+// Enqueue the custom CSS stylesheet and JS
+function enqueue_custom_dashboard_widget_scripts() {
+    wp_enqueue_style('scheduled_dashboard_widget', plugin_dir_url(__FILE__) . 'scheduled_dashboard_widget.css?ver=6.4.1');
+    wp_enqueue_scripts('schedule_change', plugin_dir_url(__FILE__) . 'schedule_change.js',array(),'1.0.0', true);
+}
+add_action('admin_enqueue_scripts', 'enqueue_custom_dashboard_widget_scripts');
+
+// Dashboard widget 
 function scheduled_dashboard_widget() {
     wp_add_dashboard_widget(
         'scheduled_dashboard_widget',        // Widget ID
@@ -99,26 +107,11 @@ function scheduled_dashboard_widget_content() {
         echo __('No scheduled posts found.', 'scheduled-dashboard-widget');
     }
 
-    // Display the footer 
+    // Display the widget footer 
     echo '<div class="scheduled-dashboard-footer">';
     echo '<span>' . __('Widget by Rici86', 'scheduled-dashboard-widget') . '</span>';
     echo '</div>';
 }
-
-// Enqueue the custom CSS stylesheet and JS
-function enqueue_custom_dashboard_widget_scripts() {
-    wp_enqueue_style('scheduled_dashboard_widget', plugin_dir_url(__FILE__) . 'scheduled_dashboard_widget.css?ver=6.4');
-
-    // Enqueue your JavaScript file without jQuery as a dependency
-    wp_enqueue_script('schedule-change', plugin_dir_url(__FILE__) . 'schedule-change.js', array('wp-date-picker'), '1.0.0', true);
-
-    // Pass data to the JavaScript file using wp_localize_script
-    wp_localize_script('schedule-change', 'customDashboardWidgetData', array(
-        'ajax_url' => admin_url('admin-ajax.php'),
-    ));
-}
-add_action('admin_enqueue_scripts', 'enqueue_custom_dashboard_widget_scripts');
-
 add_action('wp_dashboard_setup', 'scheduled_dashboard_widget');
 
 // SCHEDULER PAGE 
@@ -209,7 +202,7 @@ function render_scheduled_posts_page_content() {
         echo '<table class="wp-list-table widefat fixed striped table-view-list">';
         echo '<thead>
                 <tr>
-                <th style="white-space:nowrap;">' . __('When', 'scheduler') . '</th>
+                <th style="white-space:nowrap;" colspan="2">' . __('When', 'scheduler') . '</th>
                 <th>' . __('Title', 'scheduler') . '</th>
                 <th>' . __('Categories', 'scheduler') . '</th>
                 <th>' . __('Tags', 'scheduler') . '</th>
@@ -221,11 +214,10 @@ function render_scheduled_posts_page_content() {
         while ($scheduled_posts->have_posts()) {
             $scheduled_posts->the_post();
             echo '<tr>';
-            echo '<td style="white-space: nowrap;">' . get_the_date('l d M Y, H:i');
+            echo '<td style="white-space: nowrap;">' . get_the_date('l d M Y, H:i').'</td>';
             // Add the "Change Schedule" button
-            echo '<div class="row-actions">';
-            echo '<span class="edit"><a href="#" class="change-schedule-button" data-post-id="' . get_the_ID() . '">' . __('Change Schedule', 'scheduled-dashboard-widget') . '</a></span>';
-            echo '</div>';
+            echo '<td>';
+            echo '<a class="button" href="#" class="change-schedule-button" data-post-id="' . get_the_ID() . '">' . __('Change Schedule', 'scheduled-dashboard-widget') . '</a></td>';
             // Schedule edit form (hidden by default)
             echo '
             <div class="schedule-edit-form" style="display: none;">
