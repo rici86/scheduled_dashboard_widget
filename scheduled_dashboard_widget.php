@@ -6,7 +6,7 @@
  * Author: <a href="https://www.rici86.com">Rici86</a>
  * Text Domain: scheduled-dashboard-widget
  * Domain Path: /languages
-*/
+ */
 
 // Load the plugin's text domain for translations
 function scheduled_dashboard_widget_load_textdomain() {
@@ -78,7 +78,7 @@ function scheduled_dashboard_widget_content() {
             $scheduled_posts->the_post();
             echo '<tr>';
             echo '<td style="white-space: nowrap;">' . get_the_date('D d/m, H:i') . '</td>';
-            echo '<td><a href="' . get_edit_post_link() . '">' . get_the_title() . '</a>';
+            echo '<td><a href="' . get_edit_post_link() . '"><strong>' . get_the_title() . '</strong></a>';
             // Get post categories
             $post_categories = get_the_category();
             if (!empty($post_categories)) {
@@ -86,7 +86,7 @@ function scheduled_dashboard_widget_content() {
                 $category_names = wp_list_pluck($post_categories, 'name');
                 echo implode(', ', $category_names);
                 echo ')</span>';
-            }
+            }            
             echo '</td>';
             echo '<td>' . esc_html($registered_post_types[get_post_type()]->label) . '</td>';
             echo '<td><a href="' . esc_url(get_preview_post_link(get_the_ID())) . '" target="_blank" class="button">' . __('Preview', 'scheduled-dashboard-widget') . '</a></td>';
@@ -103,14 +103,21 @@ function scheduled_dashboard_widget_content() {
     echo '<div class="scheduled-dashboard-footer">';
     echo '<span>' . __('Widget by Rici86', 'scheduled-dashboard-widget') . '</span>';
     echo '</div>';
-	
 }
 
-// Enqueue the custom CSS stylesheet
-function enqueue_custom_dashboard_widget_css() {
+// Enqueue the custom CSS stylesheet and JS
+function enqueue_custom_dashboard_widget_scripts() {
     wp_enqueue_style('scheduled_dashboard_widget', plugin_dir_url(__FILE__) . 'scheduled_dashboard_widget.css?ver=6.4');
+
+    // Enqueue your JavaScript file without jQuery as a dependency
+    wp_enqueue_script('schedule-change', plugin_dir_url(__FILE__) . 'schedule-change.js', array('wp-date-picker'), '1.0.0', true);
+
+    // Pass data to the JavaScript file using wp_localize_script
+    wp_localize_script('schedul-change', 'customDashboardWidgetData', array(
+        'ajax_url' => admin_url('admin-ajax.php'),
+    ));
 }
-add_action('admin_enqueue_scripts', 'enqueue_custom_dashboard_widget_css');
+add_action('admin_enqueue_scripts', 'enqueue_custom_dashboard_widget_scripts');
 
 add_action('wp_dashboard_setup', 'scheduled_dashboard_widget');
 
@@ -154,6 +161,7 @@ function render_scheduled_posts_page_content() {
     $registered_post_types = get_post_types(array('public' => true), 'objects');
 
     $selected_post_types = ($selected_post_types !== 'all') ? $selected_post_types : wp_list_pluck($registered_post_types, 'name');
+    
     // Use the selected post types as default filter
     $args = array(
         'post_type'      => ($selected_post_types !== 'all') ? $selected_post_types : wp_list_pluck($registered_post_types, 'name'),
@@ -168,6 +176,10 @@ function render_scheduled_posts_page_content() {
     $total_results = $scheduled_posts->found_posts;
 
     if ($scheduled_posts->have_posts()) {
+
+    // Pagination
+    define('MAX_POSTS_PER_PAGE', 10);
+
 
         // Output filter form
         ?>
@@ -209,7 +221,23 @@ function render_scheduled_posts_page_content() {
         while ($scheduled_posts->have_posts()) {
             $scheduled_posts->the_post();
             echo '<tr>';
-            echo '<td style="white-space: nowrap;">' . get_the_date('l d M Y, H:i') . '</td>';
+            echo '<td style="white-space: nowrap;">' . get_the_date('l d M Y, H:i');
+            // Add the "Change Schedule" button
+            echo '<div class="row-actions">';
+            echo '<span class="edit"><a href="#" class="change-schedule-button" data-post-id="' . get_the_ID() . '">' . __('Change Schedule', 'scheduled-dashboard-widget') . '</a></span>';
+            echo '</div>';
+            // Schedule edit form (hidden by default)
+            echo '
+            <div class="schedule-edit-form" style="display: none;">
+                <form>
+                    <input type="datetime-local" name="new-schedule" value="">
+                    <input type="hidden" name="post-id" value="'.esc_attr(get_the_ID()).'">
+                    <button class="save-schedule-button">Save</button>
+                    <button class="cancel-schedule-button">Cancel</button>
+                </form>
+            </div>
+            ';
+            echo '</td>';
             echo '<td><a href="' . get_edit_post_link() . '"><strong>' . get_the_title() . '</strong></a></td>';
             echo '<td>';
             // Get post categories
@@ -239,5 +267,3 @@ function render_scheduled_posts_page_content() {
         echo __('No scheduled posts found.', 'scheduler');
     }
 }
-
-
