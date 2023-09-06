@@ -172,7 +172,7 @@ function render_scheduled_posts_page_content() {
         // Output filter form
         ?>
         <div style="margin-bottom: 1rem;">
-            <div style="display:flex; gap:1rem; justify-content:space-between;">
+            <div style="display:flex; gap:1rem; justify-content:space-between; align-items:end; margin-bottom: 1rem;">
                 <form method="post">
                     <div class="scheduled-dashboard-filtering">
                         <label><?php _e('Filter Post Types:', 'scheduler'); ?></label>
@@ -188,8 +188,8 @@ function render_scheduled_posts_page_content() {
                         <?php endforeach; ?>
                     </div>
                 </form>
-                <div class="tablenav">
-                    <div class="tablenav-pages"><span class="displaying-num">Total Results: <?php echo $total_results; ?> </span></div>
+                <div class="tablenav" style="height: auto;">
+                    <div class="tablenav-pages" style="margin-bottom:0;"><span class="displaying-num">Total Results: <?php echo $total_results; ?> </span></div>
                 </div>
             </div>
         <?php
