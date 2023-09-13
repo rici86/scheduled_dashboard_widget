@@ -17,7 +17,6 @@ add_action('plugins_loaded', 'scheduled_dashboard_widget_load_textdomain');
 // Enqueue the custom CSS stylesheet and JS
 function enqueue_custom_dashboard_widget_scripts() {
     wp_enqueue_style('scheduled_dashboard_widget', plugin_dir_url(__FILE__) . 'scheduled_dashboard_widget.css?ver=6.4.1');
-    wp_enqueue_scripts('schedule_change', plugin_dir_url(__FILE__) . 'schedule_change.js',array(),'1.0.0', true);
 }
 add_action('admin_enqueue_scripts', 'enqueue_custom_dashboard_widget_scripts');
 
