@@ -16,7 +16,8 @@ add_action('plugins_loaded', 'scheduled_dashboard_widget_load_textdomain');
 
 // Enqueue the custom CSS stylesheet and JS
 function enqueue_custom_dashboard_widget_scripts() {
-    wp_enqueue_style('scheduled_dashboard_widget', plugin_dir_url(__FILE__) . 'scheduled_dashboard_widget.css?ver=6.4.1');
+    wp_enqueue_style('scheduled_dashboard_widget', plugin_dir_url(__FILE__) . 'scheduled_dashboard_widget.css?ver=6.4.2');
+    wp_enqueue_scripts('schedule_change', plugin_dir_url(__FILE__) . 'schedule_change.js',array(),'1.0.0', true);
 }
 add_action('admin_enqueue_scripts', 'enqueue_custom_dashboard_widget_scripts');
 
@@ -79,23 +80,23 @@ function scheduled_dashboard_widget_content() {
 
     if ($scheduled_posts->have_posts()) {
         echo '<table class="widefat striped" style="border: none;">';
-        echo '<thead><tr><th style="white-space:nowrap;">' . __('When', 'scheduled-dashboard-widget') . '</th><th>' . __('Title', 'scheduled-dashboard-widget') . '</th><th style="white-space:nowrap;">' . __('Post Type', 'scheduled-dashboard-widget') . '</th><th></th></tr></thead>';
+        echo '<thead><tr><th style="white-space:nowrap;">' . __('When', 'scheduled-dashboard-widget') . '</th><th>' . __('Title', 'scheduled-dashboard-widget') . '</th><th style="white-space:nowrap;">' . __('Type', 'scheduled-dashboard-widget') . '</th><th></th></tr></thead>';
         echo '<tbody>';
         while ($scheduled_posts->have_posts()) {
             $scheduled_posts->the_post();
             echo '<tr>';
-            echo '<td style="white-space: nowrap;">' . get_the_date('D d/m, H:i') . '</td>';
+            echo '<td style="white-space: nowrap; font-size:12px;">' . get_the_date('D d/m, H:i') . '</td>';
             echo '<td><a href="' . get_edit_post_link() . '"><strong>' . get_the_title() . '</strong></a>';
             // Get post categories
             $post_categories = get_the_category();
             if (!empty($post_categories)) {
-                echo '<br><span class="post-categories scheduled-cat">(';
+                echo '<br><span class="post-categories scheduled-cat" style="font-size:0.75rem;">(';
                 $category_names = wp_list_pluck($post_categories, 'name');
                 echo implode(', ', $category_names);
                 echo ')</span>';
             }            
             echo '</td>';
-            echo '<td>' . esc_html($registered_post_types[get_post_type()]->label) . '</td>';
+            echo '<td style="font-size:12px;">' . esc_html($registered_post_types[get_post_type()]->label) . '</td>';
             echo '<td><a href="' . esc_url(get_preview_post_link(get_the_ID())) . '" target="_blank" class="button">' . __('Preview', 'scheduled-dashboard-widget') . '</a></td>';
             echo '</tr>';
         }
