@@ -77,7 +77,10 @@ function scheduled_dashboard_widget_content() {
     );
 
     $scheduled_posts = new WP_Query($args);
-
+    
+    // Total number of posts
+    echo '<div style="text-align:right; margin-bottom:0.25rem;"><small>Total scheduled posts: ' . $scheduled_posts->found_posts . '</small></div>';
+	
     if ($scheduled_posts->have_posts()) {
         echo '<table class="widefat striped" style="border: none;">';
         echo '<thead><tr><th style="white-space:nowrap;">' . __('When', 'scheduled-dashboard-widget') . '</th><th>' . __('Title', 'scheduled-dashboard-widget') . '</th><th style="white-space:nowrap;">' . __('Type', 'scheduled-dashboard-widget') . '</th><th></th></tr></thead>';
