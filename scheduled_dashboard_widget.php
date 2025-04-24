@@ -40,6 +40,9 @@ function scheduled_dashboard_widget_content() {
 
     // Get the selected post types from the user meta
     $selected_post_types = get_user_meta(get_current_user_id(), 'custom_dashboard_post_type_filter', true);
+    if (!is_array($selected_post_types)) {
+        $selected_post_types = array(); // default to empty array
+    }
 
     // Get all registered post types
     $registered_post_types = get_post_types(array('public' => true), 'objects');
