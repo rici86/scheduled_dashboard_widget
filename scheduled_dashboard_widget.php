@@ -15,11 +15,11 @@ function scheduled_dashboard_widget_load_textdomain() {
 add_action('plugins_loaded', 'scheduled_dashboard_widget_load_textdomain');
 
 // Enqueue the custom CSS stylesheet and JS
-function enqueue_custom_dashboard_widget_scripts() {
+function scheduled_enqueue_custom_dashboard_widget_scripts() {
     wp_enqueue_style('scheduled_dashboard_widget', plugin_dir_url(__FILE__) . 'scheduled_dashboard_widget.css?ver=6.4.2');
     wp_enqueue_scripts('schedule_change', plugin_dir_url(__FILE__) . 'schedule_change.js',array(),'1.0.0', true);
 }
-add_action('admin_enqueue_scripts', 'enqueue_custom_dashboard_widget_scripts');
+add_action('admin_enqueue_scripts', 'scheduled_enqueue_custom_dashboard_widget_scripts');
 
 // Dashboard widget 
 function scheduled_dashboard_widget() {
@@ -35,11 +35,11 @@ function scheduled_dashboard_widget_content() {
     // Check if the filter form has been submitted
     if (isset($_POST['post_type_filter'])) {
         $selected_post_types = $_POST['post_type_filter'];
-        update_user_meta(get_current_user_id(), 'custom_dashboard_post_type_filter', $selected_post_types);
+        update_user_meta(get_current_user_id(), 'scheduled_custom_dashboard_post_type_filter', $selected_post_types);
     }
 
     // Get the selected post types from the user meta
-    $selected_post_types = get_user_meta(get_current_user_id(), 'custom_dashboard_post_type_filter', true);
+    $selected_post_types = get_user_meta(get_current_user_id(), 'scheduled_custom_dashboard_post_type_filter', true);
     if (!is_array($selected_post_types)) {
         $selected_post_types = array(); // default to empty array
     }
